@@ -1,7 +1,7 @@
 {
   "name": "PWA Calendario y Formularios",
   "short_name": "PWA Cal&Form",
-  "start_url": "/",
+  "start_url": "/PWA_FirstCache/",
   "display": "standalone",
   "background_color": "#667eea",
   "theme_color": "#4A90E2",
