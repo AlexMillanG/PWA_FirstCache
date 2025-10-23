@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA - Calendario</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4A90E2">
+    <link rel="stylesheet" href="/styles.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.css' rel='stylesheet' />
+</head>
+<body class="page-calendario">
+    <div class="container large">
+        <div class="header">
+            <h1>Calendario</h1>
+            <a href="/index.html" class="back-btn">inicio</a>
+        </div>
+
+        <div id="calendar"></div>
+    </div>
+
+    <!-- FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                locale: 'es',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                buttonText: {
+                    today: 'Hoy',
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día'
+                },
+                events: [],
+                editable: true,
+                selectable: true,
+                selectMirror: true,
+                dayMaxEvents: true,
+                select: function(info) {
+                    var title = prompt('Ingrese el título del evento:');
+                    if (title) {
+                        calendar.addEvent({
+                            title: title,
+                            start: info.start,
+                            end: info.end,
+                            allDay: info.allDay,
+                            backgroundColor: '#667eea',
+                            borderColor: '#667eea'
+                        });
+                    }
+                    calendar.unselect();
+                },
+                eventClick: function(info) {
+                    if (confirm('¿Desea eliminar el evento "' + info.event.title + '"?')) {
+                        info.event.remove();
+                    }
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>

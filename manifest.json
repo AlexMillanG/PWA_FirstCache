@@ -1,0 +1,21 @@
+{
+  "name": "PWA Calendario y Formularios",
+  "short_name": "PWA Cal&Form",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#4A90E2",
+  "description": "Aplicación PWA con calendario FullCalendar y formularios con Select2. Funciona offline.",
+  "icons": [
+    {
+      "src": "/images/icons/192.png",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/images/icons/512.png",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

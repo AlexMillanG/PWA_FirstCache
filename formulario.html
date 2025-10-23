@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA - Formulario</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4A90E2">
+    <link rel="stylesheet" href="/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body class="page-formulario">
+    <div class="container medium">
+        <div class="header">
+            <h1>📝 Formulario</h1>
+            <a href="/index.html" class="back-btn">← Volver</a>
+        </div>
+
+        <form id="mainForm">
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono">
+            </div>
+
+            <div class="form-group">
+                <label for="pais">País (Select2 simple):</label>
+                <select id="pais" name="pais" style="width: 100%">
+                    <option value="">Seleccione un país</option>
+                    <option value="AR">Argentina</option>
+                    <option value="BO">Bolivia</option>
+                    <option value="BR">Brasil</option>
+                    <option value="CL">Chile</option>
+                    <option value="CO">Colombia</option>
+                    <option value="CR">Costa Rica</option>
+                    <option value="CU">Cuba</option>
+                    <option value="EC">Ecuador</option>
+                    <option value="SV">El Salvador</option>
+                    <option value="ES">España</option>
+                    <option value="GT">Guatemala</option>
+                    <option value="HN">Honduras</option>
+                    <option value="MX">México</option>
+                    <option value="NI">Nicaragua</option>
+                    <option value="PA">Panamá</option>
+                    <option value="PY">Paraguay</option>
+                    <option value="PE">Perú</option>
+                    <option value="PR">Puerto Rico</option>
+                    <option value="DO">República Dominicana</option>
+                    <option value="UY">Uruguay</option>
+                    <option value="VE">Venezuela</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tecnologias">Tecnologías (Select2 múltiple con búsqueda):</label>
+                <select id="tecnologias" name="tecnologias" multiple="multiple" style="width: 100%">
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                    <option value="java">Java</option>
+                    <option value="csharp">C#</option>
+                    <option value="php">PHP</option>
+                    <option value="ruby">Ruby</option>
+                    <option value="go">Go</option>
+                    <option value="rust">Rust</option>
+                    <option value="typescript">TypeScript</option>
+                    <option value="kotlin">Kotlin</option>
+                    <option value="swift">Swift</option>
+                    <option value="react">React</option>
+                    <option value="vue">Vue.js</option>
+                    <option value="angular">Angular</option>
+                    <option value="nodejs">Node.js</option>
+                    <option value="django">Django</option>
+                    <option value="flask">Flask</option>
+                    <option value="spring">Spring</option>
+                    <option value="dotnet">.NET</option>
+                    <option value="laravel">Laravel</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nivel">Nivel de experiencia:</label>
+                <select id="nivel" name="nivel" style="width: 100%">
+                    <option value="">Seleccione su nivel</option>
+                    <option value="principiante">Principiante</option>
+                    <option value="intermedio">Intermedio</option>
+                    <option value="avanzado">Avanzado</option>
+                    <option value="experto">Experto</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje adicional:</label>
+                <textarea id="mensaje" name="mensaje"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Enviar Formulario</button>
+        </form>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        // Inicializar Select2
+        $(document).ready(function() {
+            // Select2 básico con búsqueda para país
+            $('#pais').select2({
+                placeholder: 'Seleccione un país',
+                allowClear: true,
+                language: {
+                    noResults: function() {
+                        return "No se encontraron resultados";
+                    },
+                    searching: function() {
+                        return "Buscando...";
+                    }
+                }
+            });
+
+            // Select2 múltiple con búsqueda para tecnologías
+            $('#tecnologias').select2({
+                placeholder: 'Seleccione las tecnologías que conoce',
+                allowClear: true,
+                closeOnSelect: false,
+                language: {
+                    noResults: function() {
+                        return "No se encontraron resultados";
+                    },
+                    searching: function() {
+                        return "Buscando...";
+                    }
+                }
+            });
+
+            // Select2 para nivel
+            $('#nivel').select2({
+                placeholder: 'Seleccione su nivel',
+                allowClear: true,
+                minimumResultsForSearch: Infinity // Desactiva la búsqueda para pocos elementos
+            });
+
+            // Manejar envío del formulario
+            $('#mainForm').on('submit', function(e) {
+                e.preventDefault();
+
+                const formData = {
+                    nombre: $('#nombre').val(),
+                    email: $('#email').val(),
+                    telefono: $('#telefono').val(),
+                    pais: $('#pais option:selected').text(),
+                    tecnologias: $('#tecnologias').select2('data').map(t => t.text).join(', '),
+                    nivel: $('#nivel option:selected').text(),
+                    mensaje: $('#mensaje').val()
+                };
+
+                const resultDiv = $('#result');
+                resultDiv.html(`
+                    <h3 style="color: #667eea; margin-bottom: 10px;">✓ Formulario enviado correctamente</h3>
+                    <p><strong>Nombre:</strong> ${formData.nombre}</p>
+                    <p><strong>Email:</strong> ${formData.email}</p>
+                    <p><strong>Teléfono:</strong> ${formData.telefono || 'No proporcionado'}</p>
+                    <p><strong>País:</strong> ${formData.pais}</p>
+                    <p><strong>Tecnologías:</strong> ${formData.tecnologias || 'Ninguna seleccionada'}</p>
+                    <p><strong>Nivel:</strong> ${formData.nivel}</p>
+                    <p><strong>Mensaje:</strong> ${formData.mensaje || 'Sin mensaje'}</p>
+                `);
+                resultDiv.addClass('show');
+
+                // Scroll al resultado
+                resultDiv[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+    </script>
+
+    <script src="main.js"></script>
+</body>
+</html>
