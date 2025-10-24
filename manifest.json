@@ -8,14 +8,14 @@
   "description": "Aplicación PWA con calendario FullCalendar y formularios con Select2. Funciona offline.",
   "icons": [
     {
-      "src": "/images/icons/192.png",
+      "src": "/PWA_FirstCache/images/icons/192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/png"
     },
     {
-      "src": "/images/icons/512.png",
+      "src": "/PWA_FirstCache/images/icons/512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/png"
     }
   ]
 }

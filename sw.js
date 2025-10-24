@@ -3,15 +3,15 @@ const DYNAMIC_CACHE = 'pwa-dynamic-v1';
 
 // Recursos del App Shell
 const ASSETS_APP_SHELL = [
-  '/',
-  '/index.html',
-  '/calendario.html',
-  '/formulario.html',
-  '/main.js',
-  '/manifest.json',
-  '/styles.css',
-  '/images/icons/192.png',
-  '/images/icons/512.png'
+  '/PWA_FirstCache/',
+  '/PWA_FirstCache/index.html',
+  '/PWA_FirstCache/calendario.html',
+  '/PWA_FirstCache/formulario.html',
+  '/PWA_FirstCache/main.js',
+  '/PWA_FirstCache/manifest.json',
+  '/PWA_FirstCache/styles.css',
+  '/PWA_FirstCache/images/icons/192.png',
+  '/PWA_FirstCache/images/icons/512.png'
 ];
 
 // Recursos externos de bibliotecas (FullCalendar, Select2, jQuery)

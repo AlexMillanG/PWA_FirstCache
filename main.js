@@ -1,6 +1,6 @@
 if('serviceWorker' in navigator) {
     window.addEventListener('load',()=>{
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('/PWA_FirstCache/sw.js')
         .then(reg =>{
             console.log('sw registrado', reg);
         })
